@@ -53,7 +53,7 @@ const AddRecipe = () => {
 
     try {
       const response = await fetch(
-        "https://recipe-app-mern.onrender.com/auth/recipe",
+        "http://localhost:8000/auth/recipe",
         {
           method: "POST",
           headers: {

@@ -19,7 +19,7 @@ const Login = () => {
 
     try {
       let response = await fetch(
-        "https://recipe-app-mern.onrender.com/auth/login",
+        "http://localhost:8000/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

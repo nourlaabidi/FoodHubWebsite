@@ -4,4 +4,4 @@ const ForgotPassword = require("../controllers/ForgotPasswordController.js");
 
 router.put("/forgotpassword", ForgotPassword);
 
-module.exports = router;
+module.exports = router;//make it available in the other files

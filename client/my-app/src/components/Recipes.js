@@ -13,7 +13,7 @@ const Recipes = () => {
   }, []);
 
   const getRecipes = () => {
-    fetch("https://recipe-app-mern.onrender.com/auth/recipe", {
+    fetch("http://localhost:8000/auth/recipe", {
       method: "GET",
       headers: {
         Authorization: `${localStorage.getItem("token")}`,
@@ -39,7 +39,7 @@ const Recipes = () => {
       if (window.confirm("Are you sure you want to delete this recipe?")) {
         // Send a DELETE request to the server
         const response = await fetch(
-          `https://recipe-app-mern.onrender.com/auth/recipe/${recipeId}`,
+          `http://localhost:8000/auth/recipe/${recipeId}`,
           {
             method: "DELETE",
           }
@@ -69,7 +69,7 @@ const Recipes = () => {
     try {
       // Send a POST request to the LikedList controller
       const response = await fetch(
-        `https://recipe-app-mern.onrender.com/auth/likedRecipes/${recipeId}`,
+        `http://localhost:8000/auth/likedRecipes/${recipeId}`,
         {
           method: "POST",
         }
@@ -98,7 +98,7 @@ const Recipes = () => {
     try {
       if (e.target.value) {
         let Searchedrecipes = await fetch(
-          `https://recipe-app-mern.onrender.com/auth/searchRecipes/${e.target.value}`,
+          `http://localhost:8000/auth/searchRecipes/${e.target.value}`,
           {
             method: "GET",
             headers: {
