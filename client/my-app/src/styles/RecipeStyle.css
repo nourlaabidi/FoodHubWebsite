@@ -14,14 +14,22 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: calc(33.33% - 20px); /* Three columns with 20px gap */
+  width: calc(33.33% - 20px);
+}
+.Recipe:hover {
+  background-color: #eaeaea;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for recipe title */
+
 .Recipe h2 {
-  font-size: 20px;
-  margin-top: 0;
-  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 2px solid #ddd;
 }
 
 /* Style for recipe image */
@@ -30,9 +38,14 @@
   height: auto;
   border-radius: 5px;
 }
+.Recipe img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
 
 /* Style for ingredients list */
 .Recipe h3 {
+  font-weight: bold;
   font-size: 16px;
   margin: 10px 0;
 }
@@ -55,12 +68,29 @@
   color: #007bff; /* Default link color */
   text-decoration: none; /* Remove underlines */
   transition: color 0.3s ease; /* Smooth color transition on hover */
-  margin-left: 1rem;
+  margin-left: auto; /* Move the link to the right */
+  margin-right: auto; /* Move the link to the left */
+  display: inline-block; /* Make the link a block element */
+  text-align: center; /* Center the text within the link */
+  padding: 10px 20px; /* Add padding for better visual appearance */
+  border: 1px solid #007bff; /* Add a border for better visual appearance */
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+.Recipe a:hover {
+  color: #0056b3; /* Change link color on hover */
+  background-color: #f8f9fa; /* Add background color on hover */
 }
 
 
 
-
+.delete-button,
+.add-to-favorites-button,
+a {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
 /* Style for delete button */
 .delete-button {
   background-color: #dc3545;
@@ -82,8 +112,8 @@
 /* Existing styles for other elements... */
 
 .add-to-favorites-button {
-  background-color: #007bff; /* Blue color, you can change this to your preferred color */
-  color: #fff; /* Text color */
+  background-color: #007bff;
+  color: #fff;
   border: none;
   padding: 5px 10px;
   margin-top: 10px;
@@ -95,6 +125,10 @@
 
 .add-to-favorites-button:hover {
   background-color: #0056b3; /* Darker blue color on hover */
+}
+
+.delete-button:hover, .add-to-favorites-button:hover {
+  transform: translateY(-2px); /* Move the button slightly up on hover */
 }
 
 .no-recipes{

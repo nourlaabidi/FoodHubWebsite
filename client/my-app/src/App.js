@@ -8,6 +8,8 @@ import Recipes from "./components/Recipes";
 import AddRecipe from "./components/AddRecipe";
 import LikedProducts from "./components/likedProducts";
 import ForgotPassword from "./components/ForgotPassword";
+import Footer from "./components/footer";
+import Home from "./components/Home"
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
       <Navbar />
 
       <Routes>
+      <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
@@ -26,6 +29,8 @@ function App() {
           <Route path="/addRecipe" element={<AddRecipe />} />
         </Route>
       </Routes>
+
+      <Footer />
     </Router>
   );
 }
