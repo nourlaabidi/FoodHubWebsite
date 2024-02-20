@@ -37,15 +37,11 @@ const Navbar = () => {
             style={isOpen ? { transform: "rotate(90deg)" } : {}}
           />
 
-          <h2>Recipe Sharing App</h2>
+          <h2>FoodHub</h2>
         </div>
         <div className={`nav-right ${isOpen ? "open" : ""}`}>
           <ul>
-            <li>
-              <NavLink to="/" onClick={handleToggleMenu}>
-                Home
-              </NavLink>
-            </li>
+           
             {auth ? (
               <>
                 <li>
@@ -54,11 +50,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
 
-                <li>
-                  <NavLink to="/addRecipe" onClick={handleToggleMenu}>
-                    Add Recipe
-                  </NavLink>
-                </li>
+                
                 <li>
                   <NavLink to="/favouriteRecipes" onClick={handleToggleMenu}>
                     Favourites
@@ -78,9 +70,7 @@ const Navbar = () => {
                 <li>
                   <NavLink to="signup">SignUp</NavLink>
                 </li>
-                <li>
-                  <NavLink to="forgotPassword">Forgot Password</NavLink>
-                </li>
+                
               </>
             )}
           </ul>

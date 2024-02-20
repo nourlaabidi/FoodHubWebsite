@@ -8,7 +8,6 @@ import Recipes from "./components/Recipes";
 import AddRecipe from "./components/AddRecipe";
 import LikedProducts from "./components/likedProducts";
 import ForgotPassword from "./components/ForgotPassword";
-import Footer from "./components/footer";
 import Home from "./components/Home"
 
 function App() {
@@ -25,12 +24,9 @@ function App() {
         <Route element={<PrivateComponent />}>
           <Route path="/favouriteRecipes" element={<LikedProducts />} />
           <Route path="/recipes" element={<Recipes />} />
-          <Route path="/" element={<Recipes />} />
           <Route path="/addRecipe" element={<AddRecipe />} />
         </Route>
       </Routes>
-
-      <Footer />
     </Router>
   );
 }

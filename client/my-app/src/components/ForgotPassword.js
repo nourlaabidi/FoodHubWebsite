@@ -48,6 +48,7 @@ const UpdatePassword = () => {
   };
 
   return (
+   <body>
     <div className="update-password-container">
       <h2>Update Password</h2>
       <form onSubmit={handleSubmit}>
@@ -76,6 +77,7 @@ const UpdatePassword = () => {
       {message && <p className="error-message">{message}</p>}
       <ToastContainer />
     </div>
+    </body> 
   );
 };
 

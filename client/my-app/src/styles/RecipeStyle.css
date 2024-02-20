@@ -175,5 +175,40 @@ a {
     width: calc(30% - 50px); /* Four columns with 50px gap */
   }
 }
+.fixed-button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.fixed-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: red;
+  color: #fff;
+  font-size: 30px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.filter-container{
+ width: 25%;
+}
+.ingredient-label {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.ingredient-label:last-child {
+  border-bottom: none; /* Pour supprimer la bordure inférieure du dernier ingrédient */
+}
+.ingredient-list{
+  background-color: #fff;
+  max-height: 500px; /* Limite de la hauteur où la barre de défilement apparaîtra */
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+
 
 

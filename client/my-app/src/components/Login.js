@@ -34,7 +34,7 @@ const Login = () => {
         localStorage.setItem("token", response.token);
 
         setTimeout(() => {
-          window.location.href = "/";
+          window.location.href = "/recipes";
         }, 4000);
       } else {
         toast.error(response.error);
@@ -55,7 +55,7 @@ const Login = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          type="text"
+          type="password"
           placeholder="Enter Your password"
           onChange={(e) => setPassword(e.target.value)}
         />

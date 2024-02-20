@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css"; // Import the CSS for styling
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
+  const [uniqueIngredients, setUniqueIngredients] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState([])
 
   useEffect(() => {
     getRecipes();
@@ -31,6 +33,28 @@ const Recipes = () => {
       .catch((error) => {
         console.error(error);
       });
+  };
+  const extractUniqueIngredients = (data) => {
+    const allIngredients = data.reduce((acc, recipe) => {
+      return [...acc, ...recipe.ingredients];
+    }, []);
+
+    const uniqueIngredients = [...new Set(allIngredients)];
+    setUniqueIngredients(uniqueIngredients);
+  };
+  const handleIngredientToggle = (ingredient) => {
+    if (selectedIngredients.includes(ingredient)) {
+      setSelectedIngredients(selectedIngredients.filter((item) => item !== ingredient));
+    } else {
+      setSelectedIngredients([...selectedIngredients, ingredient]);
+    }
+  };
+
+  const filterRecipesByIngredients = (recipe) => {
+    if (selectedIngredients.length === 0) {
+      return true;
+    }
+    return recipe.ingredients.some((ingredient) => selectedIngredients.includes(ingredient));
   };
 
   const handleDeleteRecipe = async (recipeId) => {
@@ -111,6 +135,7 @@ const Recipes = () => {
 
         if (!Searchedrecipes.message) {
           setRecipes(Searchedrecipes);
+          extractUniqueIngredients(Searchedrecipes);
         } else {
           setRecipes([]);
         }
@@ -123,66 +148,88 @@ const Recipes = () => {
   };
 
   return (
-    <div className="Recipes">
-      <div className="search-bar">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search recipes"
-          onChange={(e) => SearchRecipes(e)}
-        />
-      </div>
+    
+          <div className="Recipes">
+            <div class="filter-container"> 
+              <div className="search-bar">
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="enter your ingredient"
+                  onChange={(e) => SearchRecipes(e)}
+                />
+              </div>
+              <div className="ingredient-list">
+                {uniqueIngredients.map((ingredient, index) => (
+                  <label key={ingredient} className="ingredient-label">
+                    <input
+                      type="checkbox"
+                      value={ingredient}
+                      checked={selectedIngredients.includes(ingredient)}
+                      onChange={() => handleIngredientToggle(ingredient)}
+                    />
+                    {ingredient}
+                  </label>
+                ))}
+              </div>
+            </div>
+      
+                {recipes.length > 0 ? (
+                  recipes.filter(filterRecipesByIngredients).map((recipe) =>  (
+                    <div key={recipe._id} className="Recipe">
+                      <h2>{recipe.title}</h2>
+                      <img src={recipe.imageUrl} alt={recipe.title} />
+                      <h3>Ingredients:</h3>
+                      <ul>
+                        {recipe.ingredients.length > 0 && (
+                          <ul>
+                          {recipe.ingredients.map((ingredient, index) => (
+                            <li key={index}>{ingredient}</li>
+                          ))}
+                        </ul>
+                        )}
+                      </ul>
+                      <div className="instructions-container">
+                        <h3>Instructions:</h3>
+                        {recipe.instructions.match(/^\d+\./) ? (
+                          <div className="instructions-text">
+                            {recipe.instructions.split("\n").map((step, index) => (
+                              <p key={index}>{step}</p>
+                            ))}
+                          </div>
+                        ) : (
+                          <ol className="instructions-list">
+                            {recipe.instructions.split("\n").map((step, index)=> (
+                              <li key={index}>{step}</li>
+                            ))}
+                          </ol>
+                        )}
+                      </div>
 
-      {recipes.length > 0 ? (
-        recipes.map((recipe) => (
-          <div key={recipe._id} className="Recipe">
-            <h2>{recipe.title}</h2>
-            <img src={recipe.imageUrl} alt={recipe.title} />
-            <h3>Ingredients:</h3>
-            <ul>
-              {recipe.ingredients.length > 0 && (
-                <ul>
-                  {recipe.ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
-                  ))}
-                </ul>
-              )}
-            </ul>
-            <div className="instructions-container">
-              <h3>Instructions:</h3>
-              {recipe.instructions.match(/^\d+\./) ? (
-                <div className="instructions-text">
-                  {recipe.instructions.split("\n").map((step, index) => (
-                    <p key={index}>{step}</p>
-                  ))}
-                </div>
-              ) : (
-                <ol className="instructions-list">
-                  {recipe.instructions.split("\n").map((step, index) => (
-                    <li key={index}>{step}</li>
-                  ))}
-                </ol>
-              )}
+                      <button
+                        className="delete-button"
+                        onClick={() => handleDeleteRecipe(recipe._id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="add-to-favorites-button"
+                        onClick={() => handleAddToFavorites(recipe._id)}
+                      >
+                        Add to Favorites
+                      </button>
+                      <Link to={"/addRecipe"}>Add more recipes</Link>
+                    </div>
+                  ))
+                ) : (
+                  <h2 className="no-recipes">No Recipes Found</h2>
+                )}
+            <div className="fixed-button-container">
+              <Link to="/addRecipe" className="fixed-button">
+                +
+              </Link>
             </div>
 
-            <button
-              className="delete-button"
-              onClick={() => handleDeleteRecipe(recipe._id)}
-            >
-              Delete
-            </button>
-            <button
-              className="add-to-favorites-button"
-              onClick={() => handleAddToFavorites(recipe._id)}
-            >
-              Add to Favorites
-            </button>
-            <Link to={"/addRecipe"}>Add more recipes</Link>
-          </div>
-        ))
-      ) : (
-        <h2 className="no-recipes">No Recipes Found</h2>
-      )}
       <ToastContainer />
     </div>
   );
