@@ -37,7 +37,7 @@ const Register = () => {
           toast.success("Registration successful.");
           localStorage.setItem("token", user.token);
           setTimeout(() => {
-            window.location.href = "/";
+            window.location.href = "/recipes";
           }, 4000);
         }
       } else {
