@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const LogoutUser = () => {
-    if (window.confirm("You wanna logout?")) {
+    if (window.confirm("vous voulez vous déconnecter?")) {
       localStorage.clear();
       window.location.href = "/login";
     } else {
@@ -46,29 +46,29 @@ const Navbar = () => {
               <>
                 <li>
                   <NavLink to="/recipes" onClick={handleToggleMenu}>
-                    Recipes
+                    Recettes
                   </NavLink>
                 </li>
 
                 
                 <li>
                   <NavLink to="/favouriteRecipes" onClick={handleToggleMenu}>
-                    Favourites
+                    Favoris
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="login" onClick={LogoutUser}>
-                    Logout
+                    Déconnexion
                   </NavLink>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <NavLink to="login">Login</NavLink>
+                  <NavLink to="login">S'authentifier</NavLink>
                 </li>
                 <li>
-                  <NavLink to="signup">SignUp</NavLink>
+                  <NavLink to="signup">Créer un compte</NavLink>
                 </li>
                 
               </>

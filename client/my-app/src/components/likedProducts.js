@@ -34,7 +34,7 @@ const LikedProducts = () => {
     try {
       if (
         window.confirm(
-          "Are you sure you wanna remove this recipe from favourites??"
+          "Vous étes sur d'avoir supprimer cette recette??"
         )
       ) {
         const response = await fetch(
@@ -45,7 +45,7 @@ const LikedProducts = () => {
         );
 
         if (response.ok) {
-          toast.success("Item Removed successfully");
+          toast.success("Supression avec succées");
           fetchLikedProducts();
           setTimeout(() => {
             window.location.href = "/favouriteRecipes";
@@ -64,7 +64,7 @@ const LikedProducts = () => {
 
   return (
     <div className="likedRecipes">
-      <h2>Favourites</h2>
+      <h2>Favoris</h2>
       <ul>
         {likedProducts.map((product) => (
           <li key={product._id} className="list">
@@ -96,7 +96,7 @@ const LikedProducts = () => {
                 className="remove-item-button"
                 onClick={() => handleRemoveItem(product._id)}
               >
-                Remove Item
+                Supprimer
               </button>
             </div>
           </li>

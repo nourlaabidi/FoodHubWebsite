@@ -12,13 +12,13 @@ const Home = () => {
           <div class="overlay-content">
             <div class="overlay-text"> 
                 <p class="title">FoodHub</p>
-                <p class="sub-title">pick your favorite receipe </p>
+                <p class="sub-title">choisissez votre recette préféré </p>
                 <div className="button-container">
                   <Link to="/login" >
-                    <button>Login</button>
+                    <button>S'authentifier</button>
                   </Link>
                   <Link to="/signup" >
-                    <button>Sign Up</button>
+                    <button>Créer un compte</button>
                   </Link>
                 </div>
 

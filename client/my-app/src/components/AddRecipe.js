@@ -80,10 +80,10 @@ const AddRecipe = () => {
 
   return (
     <div className="add-recipe">
-      <h2>Add Recipe</h2>
+      <h2>Ajouter recette</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Title:</label>
+          <label>Titre:</label>
           <input
             type="text"
             name="title"
@@ -102,7 +102,7 @@ const AddRecipe = () => {
             />
           ))}
           <button type="button" onClick={handleAddIngredient}>
-            Add Ingredient
+            Ajouter Ingredient
           </button>
         </div>
         <div>
@@ -123,7 +123,7 @@ const AddRecipe = () => {
           />
         </div>
         <div>
-          <button type="submit">Add Recipe</button>
+          <button type="submit">Ajouter recette</button>
         </div>
       </form>
       <ToastContainer />

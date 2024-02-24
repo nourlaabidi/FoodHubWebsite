@@ -66,7 +66,7 @@ const Recipes = () => {
 
   const handleDeleteRecipe = async (recipeId) => {
     try {
-      if (window.confirm("Are you sure you want to delete this recipe?")) {
+      if (window.confirm("Vous etes sur de supprimer cette recette?")) {
         const response = await fetch(
           `http://localhost:8000/auth/recipe/${recipeId}`,
           {
@@ -75,7 +75,7 @@ const Recipes = () => {
         );
 
         if (response.ok) {
-          toast.success("Recipe deleted successfully");
+          toast.success("Suppression avec succées");
           setTimeout(() => {
             window.location = "/recipes";
           }, 4000);
@@ -102,14 +102,14 @@ const Recipes = () => {
       );
 
       if (response.ok) {
-        toast.success("Recipe added to favorites successfully");
+        toast.success("Recette ajouté au favoris avec succées");
         setTimeout(() => {
           window.location.href = "/favouriteRecipes";
         }, 4000);
       } else {
         const data = await response.json();
-        if (data.error === "Recipe already exists in your favorites") {
-          toast.warn("Recipe already exists in your favorites");
+        if (data.error === "Recette deja existante dans les favoris") {
+          toast.warn("Recette deja existante dans les favoris");
         } else {
           toast.error(data.error);
         }
@@ -155,7 +155,7 @@ const Recipes = () => {
           <input
             type="text"
             className="search-input"
-            placeholder="Search recipes"
+            placeholder="chercher une recette"
             onChange={(e) => SearchRecipes(e)}
           />
         </div>
@@ -208,19 +208,19 @@ const Recipes = () => {
               className="delete-button"
               onClick={() => handleDeleteRecipe(recipe._id)}
             >
-              Delete
+              Supprimer
             </button>
             <button
               className="add-to-favorites-button"
                         onClick={() => handleAddToFavorites(recipe._id)}
                       >
-                        Add to Favorites
+                        Ajout au favoris
                       </button>
-                      <Link to={"/addRecipe"}>Add more recipes</Link>
+                      <Link to={"/addRecipe"}>Ajout de recette</Link>
                     </div>
                   ))
                 ) : (
-                  <h2 className="no-recipes">No Recipes Found</h2>
+                  <h2 className="no-recipes">pas de recette exstante</h2>
                 )}
             <div className="fixed-button-container">
               <Link to="/addRecipe" className="fixed-button">

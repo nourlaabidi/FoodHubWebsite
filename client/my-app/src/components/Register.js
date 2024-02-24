@@ -32,16 +32,16 @@ const Register = () => {
         const user = await response.json();
 
         if (user.error) {
-          toast.warn("User already exists. Try with different email");
+          toast.warn("Utilisateur existe déja");
         } else {
-          toast.success("Registration successful.");
+          toast.success("Création avec succées");
           localStorage.setItem("token", user.token);
           setTimeout(() => {
             window.location.href = "/recipes";
           }, 4000);
         }
       } else {
-        console.error("Failed to register user:", response.status);
+        console.error("échec", response.status);
       }
     } catch (error) {
       toast.error("An error occurred while registering user:", error);
@@ -51,26 +51,26 @@ const Register = () => {
   return (
     <div className="SignupContainer">
       <form action="" onSubmit={(e) => handleSubmit(e)}>
-        <h2>SignUp</h2>
+        <h2>Créer un compte</h2>
         <input
           type="text"
-          placeholder="Enter Your Name"
+          placeholder="Entrer votre nom"
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="email"
-          placeholder="Enter Your email"
+          placeholder="Entrer votre email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Enter Your password"
+          placeholder="Entrer votre mot de passe"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Envoyer</button>
       </form>
       {showError && (
-        <span className="fill-fields-error">Please Fill all the fields</span>
+        <span className="fill-fields-error">Veuillez remplir ce champ</span>
       )}
       <ToastContainer />
     </div>

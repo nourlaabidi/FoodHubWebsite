@@ -50,7 +50,7 @@ const UpdatePassword = () => {
   return (
    <body>
     <div className="update-password-container">
-      <h2>Update Password</h2>
+      <h2>Modifier mot de passe</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email:</label>
@@ -63,7 +63,7 @@ const UpdatePassword = () => {
           />
         </div>
         <div className="form-group">
-          <label>New Password:</label>
+          <label>nouveau mot de passe:</label>
           <input
             type="password"
             name="password"
@@ -72,7 +72,7 @@ const UpdatePassword = () => {
             required
           />
         </div>
-        <button type="submit">Update Password</button>
+        <button type="submit">modifier mot de passe</button>
       </form>
       {message && <p className="error-message">{message}</p>}
       <ToastContainer />

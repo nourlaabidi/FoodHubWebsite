@@ -30,7 +30,7 @@ const Login = () => {
       response = await response.json();
 
       if (!response.error) {
-        toast.success("Login Successful");
+        toast.success("succés");
         localStorage.setItem("token", response.token);
 
         setTimeout(() => {
@@ -47,24 +47,24 @@ const Login = () => {
   return (
     <div className="SignupContainer">
       <form action="" onSubmit={(e) => handleSubmit(e)}>
-        <h2>Login</h2>
+        <h2>S'authentifier</h2>
 
         <input
           type="email"
-          placeholder="Enter Your email"
+          placeholder="Entreé votre email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Enter Your password"
+          placeholder="Entrer votre mot de passe"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button type="envoyer">Submit</button>
 
-        <Link to="/forgotPassword">Forgot Password</Link>
+        <Link to="/forgotPassword">mot de passe oublié</Link>
       </form>
       {showError && (
-        <span className="fill-fields-error">Please Fill all the fields</span>
+        <span className="fill-fields-error">Veuillez remplir ce champ</span>
       )}
       <ToastContainer />
     </div>
