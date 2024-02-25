@@ -37,7 +37,7 @@ const Navbar = () => {
             style={isOpen ? { transform: "rotate(90deg)" } : {}}
           />
 
-          <h2>FoodHub</h2>
+          <h2>Food<span class="red-text">Hub</span></h2>
         </div>
         <div className={`nav-right ${isOpen ? "open" : ""}`}>
           <ul>

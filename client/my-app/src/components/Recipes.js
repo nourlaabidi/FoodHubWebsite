@@ -150,85 +150,92 @@ const Recipes = () => {
 
   return (
     <div className="Recipes">
-      <div className="filter-container">
-        <div className="search-bar">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="chercher une recette"
-            onChange={(e) => SearchRecipes(e)}
-          />
-        </div>
-        <div className="ingredient-list">
-          {uniqueIngredients.map((ingredient, index) => (
-            <label key={ingredient} className="ingredient-label">
+       
+        <div className="filter-container">
+            <div className="search-bar">
               <input
-                type="checkbox"
-                value={ingredient}
-                checked={selectedIngredients.includes(ingredient)}
-                onChange={() => handleIngredientToggle(ingredient)}
+                type="text"
+                className="search-input"
+                placeholder="chercher une recette"
+                onChange={(e) => SearchRecipes(e)}
               />
-              {ingredient}
-            </label>
-          ))}
+            </div>
+            <div className="ingredient-list">
+              {uniqueIngredients.map((ingredient, index) => (
+                <label key={ingredient} className="ingredient-label">
+                  <input
+                    type="checkbox"
+                    value={ingredient}
+                    checked={selectedIngredients.includes(ingredient)}
+                    onChange={() => handleIngredientToggle(ingredient)}
+                  />
+                  {ingredient}
+                </label>
+              ))}
+            </div>
         </div>
-      </div>
-      {recipes.length > 0 ? (
-        recipes.filter(filterRecipesByIngredients).map((recipe) => (
-          <div key={recipe._id} className="Recipe">
-            <h2>{recipe.title}</h2>
-            <img src={recipe.imageUrl} alt={recipe.title} />
-            <h3>Ingredients:</h3>
-            <ul>
-              {recipe.ingredients.length > 0 && (
-                <ul>
-                  {recipe.ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
-                  ))}
-                </ul>
-              )}
-            </ul>
-            <div className="instructions-container">
-              <h3>Instructions:</h3>
-              {recipe.instructions.match(/^\d+\./) ? (
-                <div className="instructions-text">
-                  {recipe.instructions.split("\n").map((step, index) => (
-                    <p key={index}>{step}</p>
-                  ))}
+       
+      
+          {recipes.length > 0 ? (
+            recipes.filter(filterRecipesByIngredients).map((recipe) => (
+                    
+                      <div key={recipe._id} className="Recipe">
+                        <h2>{recipe.title}</h2>
+                        <img src={recipe.imageUrl} alt={recipe.title} />
+                        <h3>Ingredients:</h3>
+                        <ul>
+                          {recipe.ingredients.length > 0 && (
+                            <ul>
+                              {recipe.ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                              ))}
+                            </ul>
+                          )}
+                        </ul>
+                        <div className="instructions-container">
+                          <h3>Instructions:</h3>
+                          {recipe.instructions.match(/^\d+\./) ? (
+                            <div className="instructions-text">
+                              {recipe.instructions.split("\n").map((step, index) => (
+                                <p key={index}>{step}</p>
+                              ))}
+                            </div>
+                          ) : (
+                            <ol className="instructions-list">
+                              {recipe.instructions.split("\n").map((step, index) => (
+                                <li key={index}>{step}</li>
+                              ))}
+                            </ol>
+                          )}
+                        </div>
+                        <button
+                          className="delete-button"
+                          onClick={() => handleDeleteRecipe(recipe._id)}
+                        >
+                          Supprimer
+                        </button>
+                        <button
+                          className="add-to-favorites-button"
+                                    onClick={() => handleAddToFavorites(recipe._id)}
+                                  >
+                                    Ajout au favoris
+                                  </button>
+                                  <Link to={"/addRecipe"}>Ajout de recette</Link>
+                      </div>
+                    
+                 
+                      ))
+                    ) : (
+                      <h2 className="no-recipes">pas de recette exstante</h2>
+                    )}
+                <div className="fixed-button-container">
+                  <Link to="/addRecipe" className="fixed-button">
+                    +
+                  </Link>
                 </div>
-              ) : (
-                <ol className="instructions-list">
-                  {recipe.instructions.split("\n").map((step, index) => (
-                    <li key={index}>{step}</li>
-                  ))}
-                </ol>
-              )}
-            </div>
-            <button
-              className="delete-button"
-              onClick={() => handleDeleteRecipe(recipe._id)}
-            >
-              Supprimer
-            </button>
-            <button
-              className="add-to-favorites-button"
-                        onClick={() => handleAddToFavorites(recipe._id)}
-                      >
-                        Ajout au favoris
-                      </button>
-                      <Link to={"/addRecipe"}>Ajout de recette</Link>
-                    </div>
-                  ))
-                ) : (
-                  <h2 className="no-recipes">pas de recette exstante</h2>
-                )}
-            <div className="fixed-button-container">
-              <Link to="/addRecipe" className="fixed-button">
-                +
-              </Link>
-            </div>
 
-      <ToastContainer />
+          <ToastContainer />
+        
     </div>
   );
 };

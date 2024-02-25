@@ -5,6 +5,7 @@
   gap: 20px;
   margin: 20px;
   margin-top: 7rem;
+  z-index: -1000px;
 }
 
 /* Style for each individual recipe card */
@@ -14,7 +15,7 @@
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: calc(33.33% - 20px);
+  width: 75%; /* Utiliser l'espace restant pour les recettes */
 }
 .Recipe:hover {
   background-color: #eaeaea;
@@ -163,6 +164,9 @@ a {
   .Recipe {
     width: calc(33.33% - 40px); /* Three columns with 40px gap */
   }
+  .Recipe:nth-child(4), .Recipe:nth-child(6),.Recipe:nth-child(8),.Recipe:nth-child(10), .Recipe:nth-child(12){
+    margin-left: 28.5%; /* Appliquer une marge à gauche à chaque troisième recette */
+  }
 }
 
 /* For larger screens (adjust as needed) */
@@ -190,8 +194,24 @@ a {
   text-decoration: none;
   border-radius: 10px;
 }
-.filter-container{
- width: 25%;
+.filter-container {
+  width: 25%; /* Définir une largeur fixe pour le filtre */
+  position: sticky;
+  top: 10%; /* Ajuster la position au besoin */
+  height: calc(100vh - 7rem); /* Ajuster la hauteur en tenant compte de la barre de navigation */
+  overflow-y: auto; /* Ajouter une barre de défilement si nécessaire */
+  padding-right: 10px; /* Ajouter un padding à droite pour séparer visuellement le filtre des recettes */
+}
+
+@media (max-width: 992px) {
+  .filter-container {
+    width: 100%; /* Pour les écrans plus petits, occuper toute la largeur */
+    position: static; /* Pour annuler la position collante */
+    height: auto; /* Ajuster la hauteur automatiquement */
+  }
+  .Recipe {
+    width: 100%; /* Sur les écrans plus petits, occuper toute la largeur */
+  }
 }
 .ingredient-label {
   display: block;
@@ -208,7 +228,4 @@ a {
   overflow-y: auto;
   border-radius: 10px;
 }
-
-
-
 
